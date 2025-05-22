@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+**/*.log
+Dockerfile
+docker-compose.yml
