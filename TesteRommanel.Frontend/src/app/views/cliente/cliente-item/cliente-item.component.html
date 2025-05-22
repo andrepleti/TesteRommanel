@@ -1,0 +1,178 @@
+<form [formGroup]="form" (ngSubmit)="OnSubmit()">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+             <app-cmb-tipo-cliente [form]="form" (ValorAlterado)="AlterarTipo()">
+                <app-erro [controle]="RetornarCampo('Tipo')" nomeCampo="Tipo" class="invalid-tooltip"></app-erro>
+            </app-cmb-tipo-cliente>
+            <input formControlName="Id" type="hidden" id="Codigo" readonly>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="CpfCnpj" type="text" class="form-control" 
+                id="CpfCnpj" [placeholder]="RetornarCpfCnpjPorTipo()"
+                [ngClass]="AplicaCssErro('CpfCnpj')" [mask]="RetornarMascaraCpfCnpjPorTipo()">
+                <label for="CpfCnpj">{{RetornarCpfCnpjPorTipo()}}</label>
+                <app-erro [controle]="RetornarCampo('CpfCnpj')" [nomeCampo]="RetornarCpfCnpjPorTipo()" 
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <div class="form-floating">
+                <input formControlName="NomeRazaoSocial" type="text" class="form-control" 
+                id="NomeRazaoSocial" [placeholder]="RetornarNomeRazaoSocialPorTipo()"
+                [ngClass]="AplicaCssErro('NomeRazaoSocial')" mask="0{200}" maxlength="200">
+                <label for="NomeRazaoSocial">{{RetornarNomeRazaoSocialPorTipo()}}</label>
+                <app-erro [controle]="RetornarCampo('NomeRazaoSocial')" [nomeCampo]="RetornarNomeRazaoSocialPorTipo()" 
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="RetornarCampo('Tipo').value == 2">
+        <div class="col-md-6 mb-3">
+            <div class="form-check form-switch">
+            <input formControlName="Isento" class="form-check-input" type="checkbox" id="Isento" (change)="AlterarIsencao()">
+            <label class="form-check-label" for="Isento">Isento Inscrição Estadual</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!RetornarCampo('Isento').value && RetornarCampo('Tipo').value == 2">
+        <div class="col-md-12 mb-3">
+            <div class="form-floating">
+                <input formControlName="InscricaoEstadual" type="text" class="form-control" 
+                id="InscricaoEstadual" placeholder="Inscrição Estadual"
+                [ngClass]="AplicaCssErro('InscricaoEstadual')" mask="0{15}" maxlength="15">
+                <label for="InscricaoEstadual">Inscrição Estadual</label>
+                <app-erro [controle]="RetornarCampo('InscricaoEstadual')" nomeCampo="Inscrição Estadual"
+                class="invalid-tooltip"></app-erro>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="RetornarCampo('Tipo').value == 1">
+        <div class="col-md-12 mb-3">
+            <div class="form-floating">
+                <input formControlName="DataNascimento" type="date" class="form-control" 
+                id="DataNascimento" placeholder="Data de Nascimento"
+                [ngClass]="AplicaCssErro('DataNascimento')">
+                <label for="DataNascimento">Data de Nascimento</label>
+                <app-erro [controle]="RetornarCampo('DataNascimento')" nomeCampo="Data de Nascimento"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Telefone" type="text" class="form-control" 
+                id="Telefone" placeholder="Telefone"
+                [ngClass]="AplicaCssErro('Telefone')" mask="0{11}" maxlength="11">
+                <label for="Telefone">Telefone</label>
+                <app-erro [controle]="RetornarCampo('Telefone')" nomeCampo="Telefone"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Email" type="text" class="form-control" 
+                id="Email" placeholder="E-mail"
+                [ngClass]="AplicaCssErro('Email')" mask="0{50}" maxlength="50">
+                <label for="Email">E-mail</label>
+                <app-erro [controle]="RetornarCampo('Email')" nomeCampo="E-mail"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Cep" type="text" class="form-control" 
+                id="Cep" placeholder="CEP"
+                [ngClass]="AplicaCssErro('Cep')" mask="0{8}" maxlength="8">
+                <label for="Cep">CEP</label>
+                <app-erro [controle]="RetornarCampo('Cep')" nomeCampo="CEP"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Logradouro" type="text" class="form-control" 
+                id="Logradouro" placeholder="Logradouro"
+                [ngClass]="AplicaCssErro('Logradouro')" mask="0{200}" maxlength="200">
+                <label for="Logradouro">Logradouro</label>
+                <app-erro [controle]="RetornarCampo('Logradouro')" nomeCampo="Logradouro"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Numero" type="text" class="form-control" 
+                id="Numero" placeholder="Número"
+                [ngClass]="AplicaCssErro('Numero')" mask="0{5}" maxlength="5">
+                <label for="Numero">Número</label>
+                <app-erro [controle]="RetornarCampo('Numero')" nomeCampo="Número"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-floating">
+                <input formControlName="Bairro" type="text" class="form-control" 
+                id="Bairro" placeholder="Bairro"
+                [ngClass]="AplicaCssErro('Bairro')" mask="0{200}" maxlength="200">
+                <label for="Bairro">Bairro</label>
+                <app-erro [controle]="RetornarCampo('Bairro')" nomeCampo="Bairro"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 mb-3">
+            <div class="form-floating">
+                <input formControlName="Cidade" type="text" class="form-control" 
+                id="Cidade" placeholder="Cidade"
+                [ngClass]="AplicaCssErro('Cidade')" mask="0{200}" maxlength="200">
+                <label for="Cidade">Cidade</label>
+                <app-erro [controle]="RetornarCampo('Cidade')" nomeCampo="Cidade"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+
+        <div class="col-md-2 mb-3">
+            <div class="form-floating">
+                <input formControlName="Estado" type="text" class="form-control" 
+                id="Estado" placeholder="Estado"
+                [ngClass]="AplicaCssErro('Estado')" mask="0{2}" maxlength="2">
+                <label for="Estado">Estado</label>
+                <app-erro [controle]="RetornarCampo('Estado')" nomeCampo="Estado"
+                class="invalid-tooltip"></app-erro>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-success me-1">
+                <i class="far fa-save"></i>
+                Salvar
+              </button>
+              <button type="button" class="btn btn-danger" (click)="Voltar()">
+                <i class="far fa-window-close"></i>
+                Cancelar
+              </button>
+        </div>
+    </div>
+</form>

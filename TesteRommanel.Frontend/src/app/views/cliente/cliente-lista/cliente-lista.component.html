@@ -1,0 +1,19 @@
+<div [formGroup]="form" style="margin-top: 0px !important;">
+    <div class="row">
+      <div class="col-md-12">
+        <app-pesquisa [form]="form" (Pesquisar)="OnSubmit()"
+        [Parametros]="{'texto': this.RetornarCampo('Texto').value }">
+        </app-pesquisa>
+      </div>
+    </div>
+
+    <div class="list-group mb-1" *ngFor="let item of lista" style="padding-top: 0px !important; margin-top: 0px !important;">
+        <app-card [Codigo]="item.Id" [TextoPrincipal]="item.NomeRazaoSocial" [TextoSecundario]="item.CpfCnpj" Cor="#f8f9fa"
+        [TextoMinimizado]="RetornarTipo(item.Tipo)"
+        [Parametros]="{'texto': this.RetornarCampo('Texto').value }">
+            <button type="button" class="btn btn-sm btn-link float-end text-danger" (click)="Deletar(item.Id)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </app-card>
+      </div>
+  </div>

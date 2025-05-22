@@ -17,13 +17,12 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+.AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 
-//builder.Services.AddControllers().AddNewtonsoftJson(o =>
-//{
-//    o.SerializerSettings.ContractResolver = new DefaultContractResolver();
-//    o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-//});
 
 builder.Services.AddDbContext<DataBaseContext>(options =>
 {

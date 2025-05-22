@@ -13,7 +13,7 @@ namespace TesteRommanel.Infra.Data.Repositories
         public List<Cliente> ListarPor(string? nome)
         {
             return [.. _db.Set<Cliente>().Where(x => (string.IsNullOrWhiteSpace(nome) ||
-                                           x.NomeRazaoSocial.Trim().Contains(nome.Trim(), StringComparison.OrdinalIgnoreCase))
+                                           x.NomeRazaoSocial.Trim().ToLower().Contains(nome.Trim().ToLower()))
                                         && x.Status == (byte)EStatus.Ativo).OrderBy(x => x.NomeRazaoSocial)];
         }
 

@@ -1,0 +1,10 @@
+<div [formGroup]="form" class="form-floating input-group mb-3">
+    <input type="text" class="form-control" (keyup.enter)="OnSubmit()" placeholder="Pesquisa" formControlName="Texto" id="Texto">
+    <label for="Texto">Pesquisa</label>
+    <button class="btn btn-sm btn-primary border-0 border-bottom border-primary" type="button" (click)="OnSubmit()">
+      <i class="fas fa-search"></i>
+    </button>
+    <button type="button" class="btn btn-sm btn-success border-0 border-bottom border-success" [routerLink]="[PrimeiroValorInicial]" [queryParams]="Parametros" >
+      <i class="far fa-plus-square"></i>
+  </button>
+</div>

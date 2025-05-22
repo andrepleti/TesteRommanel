@@ -1,0 +1,20 @@
+<div [ngStyle]="{ 'background-color': Cor }"
+class="list-group-item list-group-item-action flex-column align-items-start mb-1 shadow border border-secondary border-1 rounded-pill">
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1">
+        <a [routerLink]="[Codigo]" *ngIf="!OcultarLink"  [ngClass]="Ativo ? 'text-primary' : 'text-secondary'" [queryParams]="Parametros">
+        {{ TextoPrincipal }}
+      </a>
+      <span *ngIf="OcultarLink">
+        {{ TextoPrincipal }}
+      </span>
+      </h6>
+      <small class="text-muted">
+        <ng-content></ng-content>
+      </small>
+    </div>
+    <div class="row text-muted">
+      <div class="col-6"><p class="mb-1" style="font-size: small;">{{TextoSecundario}}</p></div>
+      <div class="col-6"><span class="float-end">{{ TextoMinimizado }}</span></div>
+    </div>
+  </div>

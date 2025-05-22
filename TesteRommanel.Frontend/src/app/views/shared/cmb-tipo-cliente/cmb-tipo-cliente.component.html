@@ -1,0 +1,10 @@
+<div [formGroup]="form" class="form-floating">
+  <select class="form-select" [formControlName]="Nome" [id]="Nome"
+  [ngClass]="AplicaCssErro(Nome)" (change)="Submit()"
+  [attr.disabled]="Disabled ? '' : null">
+      <option [ngValue]="1">Física</option>
+      <option [ngValue]="2">Jurídica</option>
+    </select>
+    <label [for]="Nome">{{Texto}}</label>
+    <ng-content></ng-content>
+</div>
