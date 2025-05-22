@@ -1,7 +1,8 @@
-**/bin/
-**/obj/
-**/node_modules/
-**/dist/
-**/*.log
+**/node_modules
+**/bin
+**/obj
+**/.angular
+**/.vs
+**/.vscode
 Dockerfile
 docker-compose.yml

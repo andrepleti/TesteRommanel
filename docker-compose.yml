@@ -1,36 +1,45 @@
-version: '3.8'
 services:
   backend:
     build:
       context: .
-      dockerfile: ./docker/backend.Dockerfile
+      dockerfile: TesteRommanel.Api/Dockerfile
     ports:
-      - "5000:5000"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - "5000:8080"
+    networks:
+      - testerommanel
     depends_on:
       - db
 
   frontend:
     build:
-      context: ./src/TesteRommanel.Frontend
+      context: ./TesteRommanel.Frontend
       dockerfile: Dockerfile
     ports:
       - "4200:80"
+    networks:
+      - testerommanel
+    depends_on:
+      - backend
 
   db:
     image: mysql:8.0
-    container_name: mysql
+    container_name: mysql_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testerommanel
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: rommanel
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - testerommanel
 
 volumes:
   db_data:
+
+networks:
+  testerommanel:
+    driver: bridge
