@@ -24,7 +24,7 @@
             <div class="form-floating">
                 <input formControlName="NomeRazaoSocial" type="text" class="form-control" 
                 id="NomeRazaoSocial" [placeholder]="RetornarNomeRazaoSocialPorTipo()"
-                [ngClass]="AplicaCssErro('NomeRazaoSocial')" mask="0{200}" maxlength="200">
+                [ngClass]="AplicaCssErro('NomeRazaoSocial')" maxlength="200">
                 <label for="NomeRazaoSocial">{{RetornarNomeRazaoSocialPorTipo()}}</label>
                 <app-erro [controle]="RetornarCampo('NomeRazaoSocial')" [nomeCampo]="RetornarNomeRazaoSocialPorTipo()" 
                 class="invalid-tooltip"></app-erro>
@@ -83,7 +83,7 @@
             <div class="form-floating">
                 <input formControlName="Email" type="text" class="form-control" 
                 id="Email" placeholder="E-mail"
-                [ngClass]="AplicaCssErro('Email')" mask="0{50}" maxlength="50">
+                [ngClass]="AplicaCssErro('Email')" maxlength="50">
                 <label for="Email">E-mail</label>
                 <app-erro [controle]="RetornarCampo('Email')" nomeCampo="E-mail"
                 class="invalid-tooltip"></app-erro>
@@ -107,7 +107,7 @@
             <div class="form-floating">
                 <input formControlName="Logradouro" type="text" class="form-control" 
                 id="Logradouro" placeholder="Logradouro"
-                [ngClass]="AplicaCssErro('Logradouro')" mask="0{200}" maxlength="200">
+                [ngClass]="AplicaCssErro('Logradouro')" maxlength="200">
                 <label for="Logradouro">Logradouro</label>
                 <app-erro [controle]="RetornarCampo('Logradouro')" nomeCampo="Logradouro"
                 class="invalid-tooltip"></app-erro>
@@ -120,7 +120,7 @@
             <div class="form-floating">
                 <input formControlName="Numero" type="text" class="form-control" 
                 id="Numero" placeholder="Número"
-                [ngClass]="AplicaCssErro('Numero')" mask="0{5}" maxlength="5">
+                [ngClass]="AplicaCssErro('Numero')" maxlength="5">
                 <label for="Numero">Número</label>
                 <app-erro [controle]="RetornarCampo('Numero')" nomeCampo="Número"
                 class="invalid-tooltip"></app-erro>
@@ -131,7 +131,7 @@
             <div class="form-floating">
                 <input formControlName="Bairro" type="text" class="form-control" 
                 id="Bairro" placeholder="Bairro"
-                [ngClass]="AplicaCssErro('Bairro')" mask="0{200}" maxlength="200">
+                [ngClass]="AplicaCssErro('Bairro')" maxlength="200">
                 <label for="Bairro">Bairro</label>
                 <app-erro [controle]="RetornarCampo('Bairro')" nomeCampo="Bairro"
                 class="invalid-tooltip"></app-erro>
@@ -144,7 +144,7 @@
             <div class="form-floating">
                 <input formControlName="Cidade" type="text" class="form-control" 
                 id="Cidade" placeholder="Cidade"
-                [ngClass]="AplicaCssErro('Cidade')" mask="0{200}" maxlength="200">
+                [ngClass]="AplicaCssErro('Cidade')" maxlength="200">
                 <label for="Cidade">Cidade</label>
                 <app-erro [controle]="RetornarCampo('Cidade')" nomeCampo="Cidade"
                 class="invalid-tooltip"></app-erro>
@@ -155,7 +155,7 @@
             <div class="form-floating">
                 <input formControlName="Estado" type="text" class="form-control" 
                 id="Estado" placeholder="Estado"
-                [ngClass]="AplicaCssErro('Estado')" mask="0{2}" maxlength="2">
+                [ngClass]="AplicaCssErro('Estado')" mask="A{2}" maxlength="2">
                 <label for="Estado">Estado</label>
                 <app-erro [controle]="RetornarCampo('Estado')" nomeCampo="Estado"
                 class="invalid-tooltip"></app-erro>

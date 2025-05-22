@@ -1,16 +1,15 @@
 ﻿using TesteRommanel.Application.Queries;
 using TesteRommanel.Domain.Entities;
-using TesteRommanel.Domain.Interfaces.Events;
 using TesteRommanel.Domain.Interfaces.Factories;
 using TesteRommanel.Domain.Interfaces.Handlers;
 using TesteRommanel.Domain.Interfaces.Repositories;
 
 namespace TesteRommanel.Application.Handlers
 {
-    public class ClienteObterPorIdHandler(IEventoRepository<IEvento> eventoRepository, 
+    public class ClienteObterPorIdHandler(IEventoRepository<Evento> eventoRepository, 
                                           IFactory factory) : IClienteObterPorIdHandler<ClienteObterPorIdQuery>
     {
-        private readonly IEventoRepository<IEvento> _eventoRepository = eventoRepository;
+        private readonly IEventoRepository<Evento> _eventoRepository = eventoRepository;
         private readonly IFactory _factory = factory;
 
         public Cliente Handle(ClienteObterPorIdQuery query)

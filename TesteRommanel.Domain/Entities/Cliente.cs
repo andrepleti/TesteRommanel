@@ -1,7 +1,4 @@
-﻿using TesteRommanel.Domain.Events;
-using TesteRommanel.Domain.Interfaces.Events;
-
-namespace TesteRommanel.Domain.Entities
+﻿namespace TesteRommanel.Domain.Entities
 {
     public class Cliente : BaseEntity
     {
@@ -62,8 +59,6 @@ namespace TesteRommanel.Domain.Entities
             Estado = string.Empty;
             Id = id;
             Status = (byte)status;
-
-            AdicionarEvento(new ClienteDeletarEvento(status, id));
         }
 
         public Cliente(string nomeRazaoSocial, string cpfCnpj, string inscricaoEstadual, bool isento, DateTime? dataNascimento, string telefone, string email, byte tipo,
@@ -84,9 +79,6 @@ namespace TesteRommanel.Domain.Entities
             Cidade = cidade;
             Estado = estado;
             Id = 0;
-
-            AdicionarEvento(new ClienteInserirEvento(nomeRazaoSocial, cpfCnpj, inscricaoEstadual, isento, dataNascimento, telefone, email, tipo,
-                       cep, logradouro, numero, bairro, cidade, estado));
         }
 
         public Cliente(string nomeRazaoSocial, string cpfCnpj, string inscricaoEstadual, bool isento, DateTime? dataNascimento, string telefone, string email, byte tipo,
@@ -107,60 +99,6 @@ namespace TesteRommanel.Domain.Entities
             Cidade = cidade;
             Estado = estado;
             Id = id;
-
-            AdicionarEvento(new ClienteAtualizarEvento(nomeRazaoSocial, cpfCnpj, inscricaoEstadual, isento, dataNascimento, telefone, email, tipo,
-                       cep, logradouro, numero, bairro, cidade, estado, id));
-        }
-
-        private void AdicionarEvento(IEvento evento)
-        {
-            _eventos.Add(evento);
-        }
-
-        public void Aplicar(IEvento evento)
-        {
-            switch (evento)
-            {
-                case ClienteInserirEvento e:
-                    NomeRazaoSocial = e.NomeRazaoSocial;
-                    CpfCnpj = e.CpfCnpj;
-                    InscricaoEstadual = e.InscricaoEstadual;
-                    Isento = e.Isento;
-                    DataNascimento = e.DataNascimento;
-                    Telefone = e.Telefone;
-                    Email = e.Email;
-                    Tipo = (byte)e.Tipo;
-                    Cep = e.Cep;
-                    Logradouro = e.Logradouro;
-                    Numero = e.Numero;
-                    Bairro = e.Bairro;
-                    Cidade = e.Cidade;
-                    Estado = e.Estado;
-                    break;
-
-                case ClienteAtualizarEvento e:
-                    Id = e.Id;
-                    NomeRazaoSocial = e.NomeRazaoSocial;
-                    CpfCnpj = e.CpfCnpj;
-                    InscricaoEstadual = e.InscricaoEstadual;
-                    Isento = e.Isento;
-                    DataNascimento = e.DataNascimento;
-                    Telefone = e.Telefone;
-                    Email = e.Email;
-                    Tipo = (byte)e.Tipo;
-                    Cep = e.Cep;
-                    Logradouro = e.Logradouro;
-                    Numero = e.Numero;
-                    Bairro = e.Bairro;
-                    Cidade = e.Cidade;
-                    Estado = e.Estado;
-                    break;
-
-                case ClienteDeletarEvento e:
-                    Id = e.Id;
-                    Status = (byte)e.Status;
-                    break;
-            }
         }
 
         public string NomeRazaoSocial { get; set; }
@@ -183,8 +121,5 @@ namespace TesteRommanel.Domain.Entities
             Fisica = 1,
             Juridica = 2
         }
-
-        private readonly List<IEvento> _eventos = [];
-        public List<IEvento> Events => [];
     }
 }

@@ -220,6 +220,7 @@ export class FormValidationsService {
   RetornaMensagemErro(nomeCampo: string, nomeValidacao: string, valorValidacao?: any, coincidirTextoNome?: string) {
     switch (nomeValidacao) {
         case "required": return `${nomeCampo} é obrigatório(a).`
+        case "email": return `${nomeCampo} é inválido(a).`
         case "minlength": return `${nomeCampo} precisa ter no mínimo ${valorValidacao.requiredLength} caracteres.`
         case "maxlength": return `${nomeCampo} precisa ter no máximo ${valorValidacao.requiredLength} caracteres.`
         case "pattern": return  `${nomeCampo} inválido(a).`

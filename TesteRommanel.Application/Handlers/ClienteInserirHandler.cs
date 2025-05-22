@@ -1,18 +1,17 @@
 ﻿using FluentValidation;
 using TesteRommanel.Application.Commands;
 using TesteRommanel.Domain.Entities;
-using TesteRommanel.Domain.Interfaces.Events;
 using TesteRommanel.Domain.Interfaces.Handlers;
 using TesteRommanel.Domain.Interfaces.Repositories;
 
 namespace TesteRommanel.Application.Handlers
 {
     public class ClienteInserirHandler(IRepository<Cliente> baseRepository,
-                                       IEventoRepository<IEvento> eventoRepository,
+                                       IEventoRepository<Evento> eventoRepository,
                                          IValidator<Cliente> validator) : ICommandHandler<ClienteInserirCommand>
     {
         private readonly IRepository<Cliente> _baseRepository = baseRepository;
-        private readonly IEventoRepository<IEvento> _eventoRepository = eventoRepository;
+        private readonly IEventoRepository<Evento> _eventoRepository = eventoRepository;
         private readonly IValidator<Cliente> _validator = validator;
 
         public bool Handle(ClienteInserirCommand command)
@@ -26,7 +25,7 @@ namespace TesteRommanel.Application.Handlers
 
             if (id > 0)
             {
-                _eventoRepository.Inserir(id, cliente.Events);
+                _eventoRepository.Inserir("Inserir", cliente);
                 return true;
             }
 

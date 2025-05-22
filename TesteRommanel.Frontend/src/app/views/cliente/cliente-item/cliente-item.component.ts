@@ -72,6 +72,9 @@ export class ClienteItemComponent extends FormBaseComponent implements OnInit {
       .subscribe((x : Cliente) => {
         this.edicao = x.Id > 0;
         this.form.patchValue(x);
+        this.form.patchValue({
+          DataNascimento: x.DataNascimento == null ? null : this.FormatarData(x.DataNascimento)
+        });
       });
   }
 
@@ -126,14 +129,27 @@ export class ClienteItemComponent extends FormBaseComponent implements OnInit {
     } else {
       this.RetornarCampo("InscricaoEstadual").addValidators([Validators.required, Validators.maxLength(15)]);
     }
+    this.RetornarCampo("InscricaoEstadual").updateValueAndValidity();
   }
 
   AlterarTipo() {
     if (this.RetornarCampo("Tipo").value == 1) {
      this.RetornarCampo("DataNascimento").addValidators([Validators.required, FormValidationsService.ValidacaoDataMaior18Anos]);
     } else {
-      this.RetornarCampo("DataNascimento").clearValidators(); 
+      this.RetornarCampo("DataNascimento").clearValidators();
     }
+    this.RetornarCampo("DataNascimento").updateValueAndValidity();
+    this.AlterarIsencao();
+  }
+
+  FormatarData(data: Date) {
+    const d = new Date(data);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
   }
 
 }

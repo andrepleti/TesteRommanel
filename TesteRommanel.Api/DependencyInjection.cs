@@ -5,7 +5,6 @@ using TesteRommanel.Application.Queries;
 using TesteRommanel.Application.Validators;
 using TesteRommanel.Domain.Entities;
 using TesteRommanel.Domain.Factories;
-using TesteRommanel.Domain.Interfaces.Events;
 using TesteRommanel.Domain.Interfaces.Factories;
 using TesteRommanel.Domain.Interfaces.Handlers;
 using TesteRommanel.Domain.Interfaces.Repositories;
@@ -23,7 +22,7 @@ namespace TesteRommanel.Api
             services.AddScoped<IRepository<Cliente>, ClienteRepository>();
             services.AddScoped<IDocumentoValidator, DocumentoValidator>();
             services.AddScoped<IDataValidator, DataValidator>();
-            services.AddScoped<IEventoRepository<IEvento>, EventoRepository>();
+            services.AddScoped<IEventoRepository<Evento>, EventoRepository>();
             services.AddScoped<ICommandHandler<ClienteAtualizarCommand>, ClienteAtualizarHandler>();
             services.AddScoped<ICommandHandler<ClienteDeletarCommand>, ClienteDeletarHandler>();
             services.AddScoped<ICommandHandler<ClienteInserirCommand>, ClienteInserirHandler>();

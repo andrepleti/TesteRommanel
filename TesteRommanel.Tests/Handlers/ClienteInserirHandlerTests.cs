@@ -3,7 +3,6 @@ using Moq;
 using TesteRommanel.Application.Commands;
 using TesteRommanel.Application.Handlers;
 using TesteRommanel.Domain.Entities;
-using TesteRommanel.Domain.Interfaces.Events;
 using TesteRommanel.Domain.Interfaces.Repositories;
 using static TesteRommanel.Domain.Entities.Cliente;
 
@@ -12,14 +11,14 @@ namespace TesteRommanel.Tests.Handlers
     public class ClienteInserirHandlerTests
     {
         private readonly Mock<IRepository<Cliente>> _repoMock;
-        private readonly Mock<IEventoRepository<IEvento>> _repoEventoMock;
+        private readonly Mock<IEventoRepository<Evento>> _repoEventoMock;
         private readonly Mock<IValidator<Cliente>> _validatorMock;
         private readonly ClienteInserirHandler _handler;
 
         public ClienteInserirHandlerTests()
         {
             _repoMock = new Mock<IRepository<Cliente>>();
-            _repoEventoMock = new Mock<IEventoRepository<IEvento>>();
+            _repoEventoMock = new Mock<IEventoRepository<Evento>>();
             _validatorMock = new Mock<IValidator<Cliente>>();
 
             _validatorMock.Setup(v => v.Validate(It.IsAny<Cliente>()))
@@ -28,7 +27,7 @@ namespace TesteRommanel.Tests.Handlers
             _repoMock.Setup(r => r.Inserir(It.IsAny<Cliente>()))
                      .Returns(1);
 
-            _repoEventoMock.Setup(r => r.Inserir(It.IsAny<long>(), It.IsAny<List<IEvento>>()));
+            _repoEventoMock.Setup(r => r.Inserir(It.IsAny<string>(), It.IsAny<Cliente>()));
 
             _handler = new ClienteInserirHandler(_repoMock.Object, _repoEventoMock.Object, _validatorMock.Object);
         }
